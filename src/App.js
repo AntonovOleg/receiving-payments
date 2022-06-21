@@ -1,16 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-import Main from './components/Main';
+import "./App.css";
+import Main from "./components/Main";
+import BasketForm from "./components/basket/BasketForm";
+import { Box, Grid } from "@mui/material";
+import StepperComponent from "./components/Stepper";
+import { Container } from "@mui/system";
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        
-      </header> */}
+      <Container>
+        <StepperComponent />
+        <Box>
 
-    <Main />
+          <Grid container>
 
+            <Grid item>
+              <Main />
+            </Grid>
+
+            <Grid item>
+              <BasketForm />
+            </Grid>
+
+          </Grid>
+          
+        </Box>
+      </Container>
     </div>
   );
 }

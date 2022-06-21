@@ -45,3 +45,12 @@ export const changeStep = (newStep) => {
     }
   }
 }
+
+export const changeCurrentPayMethod = (newMethod) => {
+  return {
+    type: 'changeCurrentPayMethod',
+    payload: {
+      payMethod: newMethod
+    }
+  }
+}

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editCustomer } from "../../store/actions/actions";
+import { editCustomer } from "../../../store/actions/actions";
 
 const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentMethod, cardNumber, cardExpire, cardCVV }) => {
   const [newName, setNewName] = useState(name);
@@ -23,7 +23,6 @@ const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentM
   const dispatch = useDispatch();
 
   const cancel = () => {
-    // clear();
     setIsEditDialog(false);
   };
 
@@ -39,17 +38,7 @@ const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentM
         newCardCVV
       )
     );
-    // clear();
     setIsEditDialog(false);
-  };
-
-  const clear = () => {
-    setNewName("");
-    setNewAddress("");
-    setNewPaymentMethod("");
-    setNewCardNumber("");
-    setNewCardExpire("");
-    setNewCardCVV("");
   };
 
   return (
@@ -84,6 +73,7 @@ const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentM
           onChange={(e) => setNewPaymentMethod(e.target.value)}
         >
           <MenuItem value="creditCard">Credit Card</MenuItem>
+          <MenuItem value="paypal">PayPal</MenuItem>
         </Select>
 
         <DialogContentText>
@@ -113,7 +103,9 @@ const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentM
         </Box>
       </DialogContent>
 
-      <Box>
+      <Box sx={{
+        m: '5px'
+      }}>
         <Button onClick={() => cancel()}>Cancel</Button>
         <Button onClick={() => save()}>Save</Button>
       </Box>

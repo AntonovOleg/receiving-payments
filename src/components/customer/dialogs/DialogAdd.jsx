@@ -11,7 +11,7 @@ import {
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCustomer } from "../../store/actions/actions";
+import { addCustomer } from "../../../store/actions/actions";
 
 const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
   const dispatch = useDispatch();
@@ -61,6 +61,7 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
 
         <Select label="Payment method" value={paymentMethod} onChange={(e)=>setPaymentMethod(e.target.value)}>
           <MenuItem value='creditCard'>Credit Card</MenuItem>
+          <MenuItem value='paypal'>PayPal</MenuItem>
         </Select>
 
         <DialogContentText>
@@ -75,7 +76,9 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
 
       </DialogContent>
 
-      <Box>
+      <Box sx={{
+        m: '5px'
+      }}>
         <Button onClick={()=>cancel()}>Cancel</Button>
         <Button onClick={()=>save()}>Save</Button>
       </Box>

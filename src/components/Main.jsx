@@ -7,10 +7,9 @@ import StepperComponent from "./Stepper";
 const Main = () => {
   const step = useSelector((state) => state.stepperReducer);
   return (
-    <Container>
-      <StepperComponent />
+    <>  
       {step === 0 ? <CustomerForm /> : <PaymentForm />}
-    </Container>
+    </>
   );
 };
 
