@@ -4,6 +4,7 @@ import BasketForm from "./components/basket/BasketForm";
 import { Box, Grid } from "@mui/material";
 import StepperComponent from "./components/Stepper";
 import { Container } from "@mui/system";
+import './styles/styles.css'
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
             <Main />
           </Box>
 
-          <Box sx={{
+          <Box className='basket-wrapper' sx={{
             flexGrow: '1'
           }}>
             <BasketForm />
