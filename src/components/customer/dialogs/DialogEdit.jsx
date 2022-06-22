@@ -13,7 +13,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editCustomer } from "../../../store/actions/actions";
 
-const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentMethod, cardNumber, cardExpire, cardCVV }) => {
+const DialogEdit = ({
+  isEditDialog,
+  setIsEditDialog,
+  id,
+  name,
+  address,
+  paymentMethod,
+  cardNumber,
+  cardExpire,
+  cardCVV,
+}) => {
   const [newName, setNewName] = useState(name);
   const [newAddress, setNewAddress] = useState(address);
   const [newPaymentMethod, setNewPaymentMethod] = useState(paymentMethod);
@@ -27,18 +37,40 @@ const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentM
   };
 
   const save = () => {
-    dispatch(
-      editCustomer(
-        id,
-        newName,
-        newAddress,
-        newPaymentMethod,
-        newCardNumber,
-        newCardExpire,
-        newCardCVV
-      )
-    );
+    if (vaildate()) {
+      dispatch(
+        editCustomer(
+          id,
+          newName,
+          newAddress,
+          newPaymentMethod,
+          newCardNumber,
+          newCardExpire,
+          newCardCVV
+        )
+      );
+    }
+    else {
+      //надо откатить, иначе при повторном нажатии edit
+      // будут не правильные значения
+      setNewName(name);
+      setNewAddress(address);
+      setNewPaymentMethod(paymentMethod);
+      setNewCardNumber(cardNumber);
+      setNewCardExpire(cardExpire);
+      setNewCardCVV(cardCVV);
+    }
     setIsEditDialog(false);
+  };
+
+  const vaildate = () => {
+    if (newName === "") return false;
+    if (newAddress === "") return false;
+    if (newPaymentMethod === "") return false;
+    if (newCardNumber === "") return false;
+    if (newCardExpire === "") return false;
+    if (newCardCVV === "") return false;
+    return true;
   };
 
   return (
@@ -103,9 +135,11 @@ const DialogEdit = ({ isEditDialog, setIsEditDialog, id, name, address, paymentM
         </Box>
       </DialogContent>
 
-      <Box sx={{
-        m: '5px'
-      }}>
+      <Box
+        sx={{
+          m: "5px",
+        }}
+      >
         <Button onClick={() => cancel()}>Cancel</Button>
         <Button onClick={() => save()}>Save</Button>
       </Box>

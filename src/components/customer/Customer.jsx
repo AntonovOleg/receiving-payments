@@ -33,38 +33,66 @@ const Customer = ({
   };
 
   return (
-      <Card
-        variant="outlined"
-        sx={{
-          width: "300px",
-          m: "5px",
-        }}
-      >
-        <CardContent>
-          <Radio />
+    <Card
+      variant="outlined"
+      sx={{
+        width: "300px",
+        m: "5px",
+      }}
+    >
+      <CardContent>
+        <Box
+          sx={{
+            display: "flex",
+          }}
+        >
+          <Box
+            sx={{
+              mt: "50px",
+            }}
+          >
+            <Radio value={id} />
+          </Box>
 
-          <MonetizationOn />
+          <Box>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+              <Box>
+                <MonetizationOn sx={{
+                  fontSize: 'extra-large'
+                }} />
+              </Box>
 
-          <Typography>{name}</Typography>
-          <Typography>{address}</Typography>
-          <Typography>Account No.: 32134649846</Typography>
-          <Typography>Issuring bank: {paymentMethod}</Typography>
+              <Box>
+                <Typography>{name}</Typography>
+                <Typography sx={{
+                  color: 'gray'
+                }}>{address}</Typography>
+              </Box>
+            </Box>
 
-          <Button onClick={() => setIsEditDialog(true)}>Edit</Button>
-          <Button onClick={deleteCurrentCustomer}>Delete</Button>
-        </CardContent>
-        <DialogEdit
-          isEditDialog={isEditDialog}
-          setIsEditDialog={setIsEditDialog}
-          id={id}
-          name={name}
-          address={address}
-          paymentMethod={paymentMethod}
-          cardNumber={cardNumber}
-          cardExpire={cardExpire}
-          cardCVV={cardCVV}
-        />
-      </Card>
+            <Typography>Account No.: 32134649846</Typography>
+            <Typography>Issuring bank: {paymentMethod}</Typography>
+
+            <Button onClick={() => setIsEditDialog(true)}>Edit</Button>
+            <Button onClick={deleteCurrentCustomer}>Delete</Button>
+          </Box>
+        </Box>
+      </CardContent>
+      <DialogEdit
+        isEditDialog={isEditDialog}
+        setIsEditDialog={setIsEditDialog}
+        id={id}
+        name={name}
+        address={address}
+        paymentMethod={paymentMethod}
+        cardNumber={cardNumber}
+        cardExpire={cardExpire}
+        cardCVV={cardCVV}
+      />
+    </Card>
   );
 };
 

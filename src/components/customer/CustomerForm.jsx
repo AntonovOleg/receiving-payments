@@ -6,6 +6,7 @@ import Customer from "./Customer";
 import DialogAdd from "./dialogs/DialogAdd";
 import AddIcon from "@mui/icons-material/Add";
 import { changeStep } from "../../store/actions/actions";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const CustomerForm = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
@@ -17,7 +18,9 @@ const CustomerForm = () => {
   };
 
   return (
-    <>
+    <Box sx={{
+      mr: '3px'
+    }}>
       <Box>
         <Typography>Customer Account</Typography>
         <Grid container>
@@ -38,10 +41,15 @@ const CustomerForm = () => {
                 </Grid>
               );
             })}
+            {customers && customers.length > 0 ? null : (
+              <Typography sx={{ color: "gray" }}>
+                <i>No customers. Add a new customer account</i>
+              </Typography>
+            )}
           </RadioGroup>
         </Grid>
-        <Fab>
-          <AddIcon color="primary" onClick={() => setDialogIsOpen(true)} />
+        <Fab onClick={() => setDialogIsOpen(true)} color="primary">
+          <AddIcon />
         </Fab>
 
         <DialogAdd
@@ -50,11 +58,11 @@ const CustomerForm = () => {
         />
       </Box>
 
-      <Box>
-        <Button disabled>Return to shop</Button>
-        <Button onClick={() => toPayment()}>Continue to payment</Button>
+      <Box sx={{my: '5px'}}>
+        <Button disabled><ArrowBackIcon />Return to shop</Button>
+        <Button variant='contained' onClick={() => toPayment()}>Continue to payment</Button>
       </Box>
-    </>
+    </Box>
   );
 };
 

@@ -1,81 +1,89 @@
-import {
-  Box,
-  Button,
-  Radio,
-  RadioGroup,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Radio, RadioGroup, Typography } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MODE_BALANCE, MODE_PAYPAL, MODE_VISA } from "../../constants/payMethods";
-import { changeCurrentPayMethod, changeStep } from "../../store/actions/actions";
+import {
+  MODE_BALANCE,
+  MODE_PAYPAL,
+  MODE_VISA,
+} from "../../constants/payMethods";
+import {
+  changeCurrentPayMethod,
+  changeStep,
+} from "../../store/actions/actions";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
-  const [radio, setRadio] = useState(useSelector(state=>state.payMethodReducer));
+  const [radio, setRadio] = useState(MODE_PAYPAL);
 
   const toCustomer = () => {
     dispatch(changeStep(0));
   };
 
   const setPayMode = (mode) => {
-    dispatch(changeCurrentPayMethod(mode))
-  }
+    dispatch(changeCurrentPayMethod(mode));
+  };
 
-  const paypalHandler = () => {
-    setPayMode(MODE_PAYPAL);
-    setRadio(MODE_PAYPAL);
-  }
-
-  const visaHandler = () => {
-    setPayMode(MODE_VISA);
-    setRadio(MODE_VISA);
-  }
-
-  const balanceHandler = () => {
-    setPayMode(MODE_BALANCE);
-    setRadio(MODE_BALANCE);
-  }
+  const radioHandler = (val) => {
+    setRadio(val);
+    setPayMode(val);
+  };
 
   return (
     <Box>
       <Typography>Payment selection</Typography>
 
-      <RadioGroup>
-        <Box
-          sx={{
-            backgroundColor: "#ddd",
-            m: "5px",
-          }}
+      <Box sx={{
+        textAlign: 'left',
+      }}>
+        <RadioGroup
+          onChange={(e) => radioHandler(e.target.value)}
+          value={radio}
         >
-          <Radio onClick={()=>paypalHandler()} checked={radio===MODE_PAYPAL} />
-          PayPal
-        </Box>
+          <Box
+            sx={{
+              backgroundColor: "#ddd",
+              m: "5px",
+            }}
+          >
+            <Radio value={MODE_PAYPAL} />
+            PayPal
+          </Box>
 
-        <Box
-          sx={{
-            backgroundColor: "#ddd",
-            m: "5px",
-          }}
-        >
-          <Radio onClick={()=>visaHandler()} checked={radio===MODE_VISA} />
-          VISA
-        </Box>
+          <Box
+            sx={{
+              backgroundColor: "#ddd",
+              m: "5px",
+            }}
+          >
+            <Radio value={MODE_VISA} />
+            VISA
+          </Box>
 
-        <Box
-          sx={{
-            backgroundColor: "#ddd",
-            m: "5px",
-          }}
-        >
-          <Radio onClick={()=>balanceHandler()} checked={radio===MODE_BALANCE}  />
-          Balance
-        </Box>
-      </RadioGroup>
+          <Box
+            sx={{
+              backgroundColor: "#ddd",
+              m: "5px",
+            }}
+          >
+            <Radio value={MODE_BALANCE} />
+            Balance
+          </Box>
+        </RadioGroup>
+      </Box>
 
-      <Box>
-        <Button onClick={() => toCustomer()}>Return to customer select</Button>
-        <Button disabled>Complete order</Button>
+      <Box
+        sx={{
+          m: "5px",
+        }}
+      >
+        <Button onClick={() => toCustomer()}>
+          <ArrowBackIcon />
+          Return to customer select
+        </Button>
+        <Button variant="outlined" disabled>
+          Complete order
+        </Button>
       </Box>
     </Box>
   );
