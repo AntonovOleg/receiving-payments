@@ -89,6 +89,9 @@ const DialogEdit = ({
             variant="standard"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
+            sx={{
+              m: '5px'
+            }}
           />
         </Box>
         <Box>
@@ -97,12 +100,17 @@ const DialogEdit = ({
             variant="standard"
             value={newAddress}
             onChange={(e) => setNewAddress(e.target.value)}
+            sx={{
+              m: '5px'
+            }}
           />
         </Box>
 
-        <FormControl sx={{
-          mt: '10px'
-        }}>
+        <FormControl
+          sx={{
+            mt: "10px",
+          }}
+        >
           <InputLabel id="paymentLabel">Payment Method</InputLabel>
           <Select
             label="Payment method"
@@ -111,6 +119,7 @@ const DialogEdit = ({
             onChange={(e) => setNewPaymentMethod(e.target.value)}
             sx={{
               width: "200px",
+              m: '5px'
             }}
           >
             <MenuItem value="creditCard">Credit Card</MenuItem>
@@ -129,6 +138,9 @@ const DialogEdit = ({
             variant="standard"
             value={newCardNumber}
             onChange={(e) => setNewCardNumber(e.target.value)}
+            sx={{
+              m: '5px'
+            }}
           />
           <TextField
             label="Expire date"
@@ -136,8 +148,9 @@ const DialogEdit = ({
             value={newCardExpire}
             onChange={(e) => setNewCardExpire(e.target.value)}
             sx={{
-              mx: '10px',
-              width: '100px'
+              mx: "10px",
+              width: "100px",
+              mt: '5px'
             }}
           />
           <TextField
@@ -146,7 +159,8 @@ const DialogEdit = ({
             value={newCardCVV}
             onChange={(e) => setNewCardCVV(e.target.value)}
             sx={{
-              width: '100px'
+              width: "100px",
+              m: '5px'
             }}
           />
         </Box>
@@ -157,8 +171,15 @@ const DialogEdit = ({
           m: "5px",
         }}
       >
-        <Button onClick={() => cancel()}>Cancel</Button>
-        <Button onClick={() => save()}>Save</Button>
+        <Box
+          sx={{
+            justifyContent: "flex-end",
+            display: "flex",
+          }}
+        >
+          <Button onClick={() => cancel()}>Cancel</Button>
+          <Button onClick={() => save()}>Save</Button>
+        </Box>
       </Box>
     </Dialog>
   );

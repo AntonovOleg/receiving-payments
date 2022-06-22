@@ -1,7 +1,7 @@
 import "./App.css";
 import Main from "./components/Main";
 import BasketForm from "./components/basket/BasketForm";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import StepperComponent from "./components/Stepper";
 import { Container } from "@mui/system";
 
@@ -10,19 +10,28 @@ function App() {
     <div className="App">
       <Container>
         <StepperComponent />
-        <Box
+        <Grid
+          container
+          justifyContent="space-between"
           sx={{
             display: "flex",
           }}
         >
-          <Box>
+
+          
+          <Box sx={{
+            flexGrow: '3',  
+          }}>
             <Main />
           </Box>
 
-          <Box>
+          <Box sx={{
+            flexGrow: '1'
+          }}>
             <BasketForm />
           </Box>
-        </Box>
+
+        </Grid>
       </Container>
     </div>
   );

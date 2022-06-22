@@ -22,29 +22,27 @@ const CustomerForm = () => {
     <Box
       sx={{
         mr: "3px",
+        mt:'30px'
       }}
     >
       <Box>
-        <Typography variant='h5'>Customer Account</Typography>
-        <Grid container>
-          <Box sx={{
-            display: 'flex',
-          }}>
+        <Typography variant="h5">Customer Account</Typography>
+        <Grid container direction="column" sx={{
+          minHeight: '200px'
+        }}>
           <RadioGroup>
             {customers.map((curr) => {
               return (
-                
-                  <Customer
-                    key={curr.id}
-                    id={curr.id}
-                    name={curr.name}
-                    address={curr.address}
-                    paymentMethod={curr.paymentMethod}
-                    cardNumber={curr.cardNumber}
-                    cardExpire={curr.cardExpire}
-                    cardCVV={curr.cardCVV}
-                  />
-                 
+                <Customer
+                  key={curr.id}
+                  id={curr.id}
+                  name={curr.name}
+                  address={curr.address}
+                  paymentMethod={curr.paymentMethod}
+                  cardNumber={curr.cardNumber}
+                  cardExpire={curr.cardExpire}
+                  cardCVV={curr.cardCVV}
+                />
               );
             })}
             {customers && customers.length > 0 ? null : (
@@ -53,8 +51,6 @@ const CustomerForm = () => {
               </Typography>
             )}
           </RadioGroup>
-          </Box>
-
         </Grid>
         <Fab onClick={() => setDialogIsOpen(true)} color="primary">
           <AddIcon />
@@ -66,11 +62,12 @@ const CustomerForm = () => {
         />
       </Box>
 
-      <Box sx={{ my: "5px" }}>
+      <Box sx={{ my: "5px", display: "flex", justifyContent: "space-between" }}>
         <Button disabled>
           <ArrowBackIcon />
           Return to shop
         </Button>
+
         <Button variant="contained" onClick={() => toPayment()}>
           Continue to payment
         </Button>

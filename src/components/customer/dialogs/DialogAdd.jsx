@@ -20,7 +20,7 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
   const id = Math.random();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("paypal");
   const [cardNumber, setCardNumber] = useState("");
   const [cardExpire, setCardExpire] = useState("");
   const [cardCVV, setCardCVV] = useState("");
@@ -61,7 +61,7 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
   const clear = () => {
     setName("");
     setAddress("");
-    setPaymentMethod("");
+    setPaymentMethod("paypal");
     setCardNumber("");
     setCardExpire("");
     setCardCVV("");
@@ -92,6 +92,10 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             variant="standard"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            sx={{
+              m: '5px'
+            }}
           />
         </Box>
         <Box>
@@ -100,12 +104,18 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             variant="standard"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            sx={{
+              m: '5px'
+            }}
           />
         </Box>
 
-        <FormControl sx={{
-          mt: '10px'
-        }}>
+        <FormControl
+          sx={{
+            mt: "10px",
+            m: '5px'
+          }}
+        >
           <InputLabel id="paymentLabel">Payment Method</InputLabel>
           <Select
             label="Payment method"
@@ -116,6 +126,7 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
               width: "200px",
               my: "10px",
             }}
+            
           >
             <MenuItem value="creditCard">Credit Card</MenuItem>
             <MenuItem value="paypal">PayPal</MenuItem>
@@ -133,6 +144,9 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             variant="standard"
             value={cardNumber}
             onChange={(e) => setCardNumber(e.target.value)}
+            sx={{
+              m: '5px'
+            }}
           />
           <TextField
             label="Expire date"
@@ -140,8 +154,9 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             value={cardExpire}
             onChange={(e) => setCardExpire(e.target.value)}
             sx={{
-              mx: '10px',
-              width: '100px'
+              mx: "10px",
+              width: "100px",
+              mt: '5px'
             }}
           />
           <TextField
@@ -150,7 +165,8 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             value={cardCVV}
             onChange={(e) => setCardCVV(e.target.value)}
             sx={{
-              width: '100px'
+              width: "100px",
+              mt: '5px'
             }}
           />
         </Box>
@@ -161,9 +177,16 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
           m: "5px",
         }}
       >
-        <Button onClick={() => cancel()}>Cancel</Button>
-        <Button onClick={() => save()}>Save</Button>
-        <Button onClick={() => test()}>Test</Button>
+        <Box
+          sx={{
+            justifyContent: "flex-end",
+            display: "flex"
+          }}
+        >
+          <Button onClick={() => test()}>Test</Button>
+          <Button onClick={() => cancel()}>Cancel</Button>
+          <Button onClick={() => save()}>Save</Button>
+        </Box>
       </Box>
     </Dialog>
   );

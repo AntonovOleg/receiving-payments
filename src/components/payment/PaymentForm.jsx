@@ -31,12 +31,17 @@ const PaymentForm = () => {
   };
 
   return (
-    <Box>
-      <Typography>Payment selection</Typography>
+    <Box
+      sx={{
+        mt: '30px'
+      }}
+    >
+      <Typography variant='h5'>Payment selection</Typography>
 
       <Box
         sx={{
           textAlign: "left",
+          minHeight: '295px'
         }}
       >
         <RadioGroup
@@ -75,16 +80,12 @@ const PaymentForm = () => {
         </RadioGroup>
       </Box>
 
-      <Box
-        sx={{
-          m: "5px",
-        }}
-      >
+      <Box sx={{ my: "5px", display: "flex", justifyContent: "space-between" }}>
         <Button onClick={() => toCustomer()}>
           <ArrowBackIcon />
           Return to customer select
         </Button>
-        <Button variant="outlined" disabled>
+        <Button variant="outlined" disabled sx={{ mr: "3px" }}>
           Complete order
         </Button>
       </Box>
