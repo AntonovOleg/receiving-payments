@@ -110,6 +110,7 @@ const DialogEdit = ({
           sx={{
             mt: "10px",
           }}
+          variant='standard'
         >
           <InputLabel id="paymentLabel">Payment Method</InputLabel>
           <Select

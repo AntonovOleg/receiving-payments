@@ -115,6 +115,7 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             mt: "10px",
             m: '5px'
           }}
+          variant='standard'
         >
           <InputLabel id="paymentLabel">Payment Method</InputLabel>
           <Select
