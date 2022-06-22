@@ -5,10 +5,12 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
   MenuItem,
   Select,
   TextField,
 } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editCustomer } from "../../../store/actions/actions";
@@ -49,10 +51,9 @@ const DialogEdit = ({
           newCardCVV
         )
       );
-    }
-    else {
+    } else {
       //надо откатить, иначе при повторном нажатии edit
-      // будут не правильные значения
+      // будут неправильные значения
       setNewName(name);
       setNewAddress(address);
       setNewPaymentMethod(paymentMethod);
@@ -99,14 +100,23 @@ const DialogEdit = ({
           />
         </Box>
 
-        <Select
-          label="Payment method"
-          value={newPaymentMethod}
-          onChange={(e) => setNewPaymentMethod(e.target.value)}
-        >
-          <MenuItem value="creditCard">Credit Card</MenuItem>
-          <MenuItem value="paypal">PayPal</MenuItem>
-        </Select>
+        <FormControl sx={{
+          mt: '10px'
+        }}>
+          <InputLabel id="paymentLabel">Payment Method</InputLabel>
+          <Select
+            label="Payment method"
+            labelId="paymentLabel"
+            value={newPaymentMethod}
+            onChange={(e) => setNewPaymentMethod(e.target.value)}
+            sx={{
+              width: "200px",
+            }}
+          >
+            <MenuItem value="creditCard">Credit Card</MenuItem>
+            <MenuItem value="paypal">PayPal</MenuItem>
+          </Select>
+        </FormControl>
 
         <DialogContentText>
           Safe money transfer using your bank account. Visa, Maestro, Discover,
@@ -125,12 +135,19 @@ const DialogEdit = ({
             variant="standard"
             value={newCardExpire}
             onChange={(e) => setNewCardExpire(e.target.value)}
+            sx={{
+              mx: '10px',
+              width: '100px'
+            }}
           />
           <TextField
             label="CVV code"
             variant="standard"
             value={newCardCVV}
             onChange={(e) => setNewCardCVV(e.target.value)}
+            sx={{
+              width: '100px'
+            }}
           />
         </Box>
       </DialogContent>

@@ -4,6 +4,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
+  InputLabel,
   MenuItem,
   Select,
   TextField,
@@ -101,14 +103,24 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
           />
         </Box>
 
-        <Select
-          label="Payment method"
-          value={paymentMethod}
-          onChange={(e) => setPaymentMethod(e.target.value)}
-        >
-          <MenuItem value="creditCard">Credit Card</MenuItem>
-          <MenuItem value="paypal">PayPal</MenuItem>
-        </Select>
+        <FormControl sx={{
+          mt: '10px'
+        }}>
+          <InputLabel id="paymentLabel">Payment Method</InputLabel>
+          <Select
+            label="Payment method"
+            labelId="paymentLabel"
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
+            sx={{
+              width: "200px",
+              my: "10px",
+            }}
+          >
+            <MenuItem value="creditCard">Credit Card</MenuItem>
+            <MenuItem value="paypal">PayPal</MenuItem>
+          </Select>
+        </FormControl>
 
         <DialogContentText>
           Safe money transfer using your bank account. Visa, Maestro, Discover,
@@ -127,12 +139,19 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
             variant="standard"
             value={cardExpire}
             onChange={(e) => setCardExpire(e.target.value)}
+            sx={{
+              mx: '10px',
+              width: '100px'
+            }}
           />
           <TextField
             label="CVV code"
             variant="standard"
             value={cardCVV}
             onChange={(e) => setCardCVV(e.target.value)}
+            sx={{
+              width: '100px'
+            }}
           />
         </Box>
       </DialogContent>

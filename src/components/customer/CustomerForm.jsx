@@ -6,7 +6,8 @@ import Customer from "./Customer";
 import DialogAdd from "./dialogs/DialogAdd";
 import AddIcon from "@mui/icons-material/Add";
 import { changeStep } from "../../store/actions/actions";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { STEP2 } from "../../constants/steps";
 
 const CustomerForm = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
@@ -14,20 +15,25 @@ const CustomerForm = () => {
   const dispatch = useDispatch();
 
   const toPayment = () => {
-    dispatch(changeStep(1));
+    dispatch(changeStep(STEP2));
   };
 
   return (
-    <Box sx={{
-      mr: '3px'
-    }}>
+    <Box
+      sx={{
+        mr: "3px",
+      }}
+    >
       <Box>
-        <Typography>Customer Account</Typography>
+        <Typography variant='h5'>Customer Account</Typography>
         <Grid container>
+          <Box sx={{
+            display: 'flex',
+          }}>
           <RadioGroup>
             {customers.map((curr) => {
               return (
-                <Grid item xs={2} md={6} lg={12} key={curr.id}>
+                
                   <Customer
                     key={curr.id}
                     id={curr.id}
@@ -38,7 +44,7 @@ const CustomerForm = () => {
                     cardExpire={curr.cardExpire}
                     cardCVV={curr.cardCVV}
                   />
-                </Grid>
+                 
               );
             })}
             {customers && customers.length > 0 ? null : (
@@ -47,6 +53,8 @@ const CustomerForm = () => {
               </Typography>
             )}
           </RadioGroup>
+          </Box>
+
         </Grid>
         <Fab onClick={() => setDialogIsOpen(true)} color="primary">
           <AddIcon />
@@ -58,9 +66,14 @@ const CustomerForm = () => {
         />
       </Box>
 
-      <Box sx={{my: '5px'}}>
-        <Button disabled><ArrowBackIcon />Return to shop</Button>
-        <Button variant='contained' onClick={() => toPayment()}>Continue to payment</Button>
+      <Box sx={{ my: "5px" }}>
+        <Button disabled>
+          <ArrowBackIcon />
+          Return to shop
+        </Button>
+        <Button variant="contained" onClick={() => toPayment()}>
+          Continue to payment
+        </Button>
       </Box>
     </Box>
   );

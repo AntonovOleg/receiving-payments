@@ -1,6 +1,6 @@
 import { Box, Button, Radio, RadioGroup, Typography } from "@mui/material";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   MODE_BALANCE,
   MODE_PAYPAL,
@@ -11,13 +11,14 @@ import {
   changeStep,
 } from "../../store/actions/actions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { STEP1 } from "../../constants/steps";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
   const [radio, setRadio] = useState(MODE_PAYPAL);
 
   const toCustomer = () => {
-    dispatch(changeStep(0));
+    dispatch(changeStep(STEP1));
   };
 
   const setPayMode = (mode) => {
@@ -33,9 +34,11 @@ const PaymentForm = () => {
     <Box>
       <Typography>Payment selection</Typography>
 
-      <Box sx={{
-        textAlign: 'left',
-      }}>
+      <Box
+        sx={{
+          textAlign: "left",
+        }}
+      >
         <RadioGroup
           onChange={(e) => radioHandler(e.target.value)}
           value={radio}

@@ -4,10 +4,9 @@ const defaultState = MODE_PAYPAL;
 
 export const payMethodReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'changeCurrentPayMethod':
+    case "changeCurrentPayMethod":
       return action.payload.payMethod;
     default:
       return state;
   }
-
-}
+};

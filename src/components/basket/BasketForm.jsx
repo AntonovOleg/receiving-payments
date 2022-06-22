@@ -55,12 +55,16 @@ const BasketForm = () => {
             m: "10px",
           }}
         >
-          <Box sx={{
-            display: 'flex'
-          }}>
-            <Box sx={{
-              mt: '10px'
-            }}>
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
+            <Box
+              sx={{
+                mt: "10px",
+              }}
+            >
               <img src="./logo192.png" height="50px" />
             </Box>
             <Box>
@@ -81,9 +85,11 @@ const BasketForm = () => {
               display: "flex",
             }}
           >
-            <Box sx={{
-              mt: '10px'
-            }}>
+            <Box
+              sx={{
+                mt: "10px",
+              }}
+            >
               <img src="./logo192.png" height="50px" />
             </Box>
             <Box>

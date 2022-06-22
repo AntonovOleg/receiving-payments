@@ -1,4 +1,4 @@
-// const defaultState = [{
+// structure of state = [{
 //   id
 //   name: '',
 //   address: '',
