@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addCustomer } from "../../../store/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addCustomer, changeDialogState } from "../../../store/actions/actions";
 
-const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
+const DialogAdd = () => {
   const dispatch = useDispatch();
   const id = Math.random();
   const [name, setName] = useState("");
@@ -24,6 +24,12 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
   const [cardNumber, setCardNumber] = useState("");
   const [cardExpire, setCardExpire] = useState("");
   const [cardCVV, setCardCVV] = useState("");
+
+  const dialogIsOpen = useSelector(state => state.dialogReducer);
+
+  const setDialogIsOpen = (newState) => {
+    dispatch(changeDialogState(newState));
+  }
 
   const save = () => {
     if (vaildate()) {
@@ -127,7 +133,7 @@ const DialogAdd = ({ dialogIsOpen, setDialogIsOpen }) => {
               width: "200px",
               my: "10px",
             }}
-            
+
           >
             <MenuItem value="creditCard">Credit Card</MenuItem>
             <MenuItem value="paypal">PayPal</MenuItem>

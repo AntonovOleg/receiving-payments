@@ -1,12 +1,21 @@
 import "./App.css";
 import Main from "./components/Main";
 import BasketForm from "./components/basket/BasketForm";
-import { Box, Grid } from "@mui/material";
+import { Box, Fab, Grid } from "@mui/material";
 import StepperComponent from "./components/Stepper";
 import { Container } from "@mui/system";
-import './styles/styles.css'
+import './styles/styles.css';
+import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import { changeDialogState } from "./store/actions/actions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const addHandler = () => {
+    dispatch(changeDialogState(true))
+  }
+
   return (
     <div className="App">
       <Container>
@@ -19,11 +28,23 @@ function App() {
           }}
         >
 
-          
           <Box sx={{
-            flexGrow: '3',  
+            flexGrow: '3',
           }}>
-            <Main />
+            <Main addHandler={addHandler} />
+          </Box>
+
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+          }}>
+
+            <Box className='btn-add'>
+            <Fab onClick={() => addHandler()} color="primary">
+              <AddIcon />
+            </Fab>
+            </Box>
           </Box>
 
           <Box className='basket-wrapper' sx={{

@@ -1,6 +1,5 @@
 import { Button, Fab, Grid, RadioGroup, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Customer from "./Customer";
 import DialogAdd from "./dialogs/DialogAdd";
@@ -9,8 +8,7 @@ import { changeStep } from "../../store/actions/actions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { STEP2 } from "../../constants/steps";
 
-const CustomerForm = () => {
-  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+const CustomerForm = ({ addHandler }) => {
   const customers = useSelector((state) => state.customerReducer);
   const dispatch = useDispatch();
 
@@ -22,11 +20,16 @@ const CustomerForm = () => {
     <Box
       sx={{
         mr: "3px",
-        mt:'30px'
+        mt: '30px'
       }}
     >
       <Box>
         <Typography variant="h5">Customer Account</Typography>
+        <Box className='btn-add-sec'>
+          <Fab onClick={() => addHandler()} color="primary">
+            <AddIcon />
+          </Fab>
+        </Box>
         <Grid container direction="column" sx={{
           minHeight: '200px'
         }}>
@@ -52,14 +55,8 @@ const CustomerForm = () => {
             )}
           </RadioGroup>
         </Grid>
-        <Fab onClick={() => setDialogIsOpen(true)} color="primary">
-          <AddIcon />
-        </Fab>
 
-        <DialogAdd
-          dialogIsOpen={dialogIsOpen}
-          setDialogIsOpen={setDialogIsOpen}
-        />
+        <DialogAdd />
       </Box>
 
       <Box sx={{ my: "5px", display: "flex", justifyContent: "space-between" }}>

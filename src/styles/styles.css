@@ -2,3 +2,19 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 448px) {
+  .btn-add {
+    display: none
+  }
+}
+
+.btn-add-sec {
+  display: none
+}
+
+@media screen and (max-width: 448px) {
+  .btn-add-sec {
+    display: block
+  }
+}
