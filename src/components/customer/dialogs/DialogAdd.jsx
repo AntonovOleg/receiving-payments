@@ -45,7 +45,7 @@ const DialogAdd = () => {
     },
     validationSchema: validationSchema,
     onSubmit: () => {
-      save()
+      save();
     },
   });
 
@@ -88,12 +88,12 @@ const DialogAdd = () => {
 
   //for debugging
   const test = () => {
-    formik.values.name="Mishel";
-    formik.values.address="New York";
-    formik.values.paymentMethod="paypal";
-    formik.values.cardNumber="5468422214578540";
-    formik.values.cardExpire="07/23";
-    formik.values.cardCVV="701";
+    formik.values.name = "Mishel";
+    formik.values.address = "New York";
+    formik.values.paymentMethod = "paypal";
+    formik.values.cardNumber = "5468422214578540";
+    formik.values.cardExpire = "07/23";
+    formik.values.cardCVV = "701";
   };
 
   return (
@@ -225,10 +225,7 @@ const DialogAdd = () => {
           >
             <Button onClick={() => test()}>Test</Button>
             <Button onClick={() => cancel()}>Cancel</Button>
-            {/* <Button type="submit" onClick={() => save()}> */}
-            <Button type="submit">
-              Save
-            </Button>
+            <Button type="submit">Save</Button>
           </Box>
         </Box>
       </form>

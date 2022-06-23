@@ -73,7 +73,7 @@ const DialogEdit = ({
         formik.values.cardNumber,
         formik.values.cardExpire,
         formik.values.cardCVV
-      )   
+      )
     );
     setIsEditDialog(false);
   };
@@ -204,7 +204,7 @@ const DialogEdit = ({
             }}
           >
             <Button onClick={() => cancel()}>Cancel</Button>
-            <Button type='submit'>Save</Button>
+            <Button type="submit">Save</Button>
           </Box>
         </Box>
       </form>
