@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import { Badge, Card, Divider, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
@@ -5,11 +6,10 @@ import {
   MODE_BALANCE,
   MODE_PAYPAL,
   MODE_VISA,
-} from "../../constants/payMethods";
+} from "../../constants";
 
 const BasketForm = () => {
-  const currentPayMethod = useSelector((state) => state.payMethodReducer) * 1;
-
+  const currentPayMethod = Number(useSelector((state) => state.payMethodReducer));
   const subtotal = 400;
   const pps = (subtotal / 100) * 1;
   const vat = (subtotal / 100) * 21;

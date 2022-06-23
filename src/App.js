@@ -10,6 +10,7 @@ import { changeDialogState } from "./store/actions/actions";
 
 function App() {
   const dispatch = useDispatch();
+  const step = useSelector((state) => state.stepperReducer);
 
   const addHandler = () => {
     dispatch(changeDialogState(true));
@@ -19,42 +20,41 @@ function App() {
     <div className="App">
       <Container>
         <StepperComponent />
-        <Grid
-          container
-          justifyContent="space-between"
-        >
-          <Box
+        <Grid container justifyContent="space-between" sx={{}}>
+          <Grid
             sx={{
               flexGrow: "3",
             }}
           >
             <Main addHandler={addHandler} />
-          </Box>
+          </Grid>
 
           <Grid
-            container
+            item
             sx={{
+              display: "flex",
               flexDirection: "column",
               justifyContent: "center",
             }}
           >
-            {useSelector((state) => state.stepperReducer) === 0 && (
-              <Box className="btn-add">
+            {step === 0 && (
+              <Grid item className="btn-add">
                 <Fab onClick={addHandler} color="primary">
                   <AddIcon />
                 </Fab>
-              </Box>
+              </Grid>
             )}
           </Grid>
 
-          <Box
+          <Grid
+            item
             className="basket-wrapper"
             sx={{
               flexGrow: "1",
             }}
           >
             <BasketForm />
-          </Box>
+          </Grid>
         </Grid>
       </Container>
     </div>

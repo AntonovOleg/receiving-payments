@@ -1,10 +1,8 @@
-const defaultState = false;
-
-export const dialogReducer = (state = defaultState, action) => {
+export const dialogReducer = (state = false, action) => {
   switch (action.type) {
-    case 'ChangeDialogState':
+    case "ChangeDialogState":
       return action.payload.newState;
     default:
       return state;
   }
-}
+};

@@ -44,7 +44,7 @@
 
 @media screen and (max-width: 448px) {
   .btn-add {
-    display: none
+    display: none;
   }
 }
 
@@ -54,6 +54,6 @@
 
 @media screen and (max-width: 448px) {
   .btn-add-sec {
-    display: block
+    display: block;
   }
 }
