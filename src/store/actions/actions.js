@@ -70,3 +70,12 @@ export const changeCurrentPayMethod = (newMethod) => {
     },
   };
 };
+
+export const changeDialogState = (newValue) => {
+  return {
+    type: 'ChangeDialogState',
+    payload: {
+      newState: newValue
+    }
+  }
+}

@@ -41,7 +41,7 @@ const PaymentForm = () => {
       <Box
         sx={{
           textAlign: "left",
-          minHeight: '295px'
+          minHeight: '255px'
         }}
       >
         <RadioGroup

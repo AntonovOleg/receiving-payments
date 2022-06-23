@@ -101,7 +101,7 @@ const BasketForm = () => {
               <Typography sx={{ color: "gray" }}>
                 Cristian Lamborgini
               </Typography>
-              <Typography sx={{color: 'gray'}}>$200.00</Typography>
+              <Typography sx={{ color: 'gray' }}>$200.00</Typography>
             </Box>
           </Box>
         </Card>
@@ -127,8 +127,8 @@ const BasketForm = () => {
             </Box>
             <Box>
               <Typography>Bianca</Typography>
-              <Typography sx={{color:'gray'}}>Cristian Lamborgini</Typography>
-              <Typography sx={{color:'gray'}}>$200.00</Typography>
+              <Typography sx={{ color: 'gray' }}>Cristian Lamborgini</Typography>
+              <Typography sx={{ color: 'gray' }}>$200.00</Typography>
             </Box>
           </Box>
         </Card>
