@@ -40,14 +40,12 @@ const BasketForm = () => {
       <Grid
         container
         sx={{
-          display: "flex",
           justifyContent: "space-between",
         }}
       >
         <Grid
           item
           sx={{
-            display: "flex",
             m: "5px",
           }}
         >
@@ -57,7 +55,6 @@ const BasketForm = () => {
         <Grid
           item
           sx={{
-            display: "flex",
             mr: "30px",
             mt: "15px",
           }}
@@ -84,11 +81,7 @@ const BasketForm = () => {
             justifyContent: "space-around",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
+          <Grid container>
             <Box
               sx={{
                 mt: "10px",
@@ -101,9 +94,9 @@ const BasketForm = () => {
               <Typography sx={{ color: "gray" }}>
                 Cristian Lamborgini
               </Typography>
-              <Typography sx={{ color: 'gray' }}>$200.00</Typography>
+              <Typography sx={{ color: "gray" }}>$200.00</Typography>
             </Box>
-          </Box>
+          </Grid>
         </Card>
 
         <Card
@@ -113,11 +106,7 @@ const BasketForm = () => {
             justifyContent: "space-around",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
+          <Grid>
             <Box
               sx={{
                 mt: "10px",
@@ -127,10 +116,12 @@ const BasketForm = () => {
             </Box>
             <Box>
               <Typography>Bianca</Typography>
-              <Typography sx={{ color: 'gray' }}>Cristian Lamborgini</Typography>
-              <Typography sx={{ color: 'gray' }}>$200.00</Typography>
+              <Typography sx={{ color: "gray" }}>
+                Cristian Lamborgini
+              </Typography>
+              <Typography sx={{ color: "gray" }}>$200.00</Typography>
             </Box>
-          </Box>
+          </Grid>
         </Card>
       </Box>
 
@@ -138,29 +129,29 @@ const BasketForm = () => {
 
       {/* SUBTOTAL */}
       <Box sx={{ p: "2px" }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Grid container sx={{ justifyContent: "space-between" }}>
           <Typography>Subtotal:</Typography>
           <Typography>{subtotal.toFixed(2)}</Typography>
-        </Box>
+        </Grid>
       </Box>
 
       {/* Payment processing services 1% */}
       {currentPayMethod !== MODE_BALANCE && (
         <Box sx={{ p: "2px" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Grid container sx={{ justifyContent: "space-between" }}>
             <Typography>Payment processing services 1%:</Typography>
             <Typography>{pps.toFixed(2)}</Typography>
-          </Box>
+          </Grid>
         </Box>
       )}
 
       {/* VAT */}
       {currentPayMethod === MODE_PAYPAL && (
         <Box sx={{ p: "2px" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Grid container sx={{ justifyContent: "space-between" }}>
             <Typography>VAT 21%:</Typography>
             <Typography>{vat.toFixed(2)}</Typography>
-          </Box>
+          </Grid>
         </Box>
       )}
 
@@ -168,10 +159,10 @@ const BasketForm = () => {
 
       {/* TOTAL */}
       <Box sx={{ p: "2px" }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Grid container sx={{ justifyContent: "space-between" }}>
           <Typography>Total:</Typography>
           <Typography>{total.toFixed(2)}</Typography>
-        </Box>
+        </Grid>
       </Box>
     </Box>
   );

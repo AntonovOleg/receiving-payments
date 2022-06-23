@@ -26,7 +26,7 @@ const CustomerForm = ({ addHandler }) => {
       <Box>
         <Typography variant="h5">Customer Account</Typography>
         <Box className='btn-add-sec'>
-          <Fab onClick={() => addHandler()} color="primary">
+          <Fab onClick={addHandler} color="primary">
             <AddIcon />
           </Fab>
         </Box>
@@ -48,7 +48,7 @@ const CustomerForm = ({ addHandler }) => {
                 />
               );
             })}
-            {customers && customers.length > 0 ? null : (
+            {customers && customers.length === 0 && (
               <Typography sx={{ color: "gray" }}>
                 <i>No customers. Add a new customer account</i>
               </Typography>
