@@ -4,7 +4,6 @@ import BasketForm from "./components/basket/BasketForm";
 import { Box, Fab, Grid } from "@mui/material";
 import StepperComponent from "./components/Stepper";
 import { Container } from "@mui/system";
-import "./styles/styles.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDialogState } from "./store/actions/actions";
@@ -23,9 +22,6 @@ function App() {
         <Grid
           container
           justifyContent="space-between"
-          sx={{
-            display: "flex",
-          }}
         >
           <Box
             sx={{
@@ -35,21 +31,21 @@ function App() {
             <Main addHandler={addHandler} />
           </Box>
 
-          <Box
+          <Grid
+            container
             sx={{
-              display: "flex",
               flexDirection: "column",
               justifyContent: "center",
             }}
           >
             {useSelector((state) => state.stepperReducer) === 0 && (
               <Box className="btn-add">
-                <Fab onClick={() => addHandler()} color="primary">
+                <Fab onClick={addHandler} color="primary">
                   <AddIcon />
                 </Fab>
               </Box>
             )}
-          </Box>
+          </Grid>
 
           <Box
             className="basket-wrapper"

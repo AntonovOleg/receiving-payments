@@ -44,8 +44,9 @@ const DialogAdd = () => {
       cardCVV: "",
     },
     validationSchema: validationSchema,
-    onSubmit: () => {
+    onSubmit: (values, actions) => {
       save();
+      actions.resetForm()
     },
   });
 
@@ -67,8 +68,6 @@ const DialogAdd = () => {
         formik.values.cardCVV
       )
     );
-
-    clear();
     setDialogIsOpen(false);
   };
 

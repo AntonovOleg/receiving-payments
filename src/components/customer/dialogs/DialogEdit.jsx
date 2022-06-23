@@ -54,8 +54,8 @@ const DialogEdit = ({
       cardCVV: cardCVV,
     },
     validationSchema: validationSchema,
-    onSubmit: () => {
-      save();
+    onSubmit: (values) => {
+      save(values);
     },
   });
 
@@ -63,7 +63,9 @@ const DialogEdit = ({
     setIsEditDialog(false);
   };
 
-  const save = () => {
+  const save = (values) => {
+    console.log(values)
+    values.id = id
     dispatch(
       editCustomer(
         id,
