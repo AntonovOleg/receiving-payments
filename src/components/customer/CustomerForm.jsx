@@ -6,7 +6,7 @@ import DialogAdd from "./dialogs/DialogAdd";
 import AddIcon from "@mui/icons-material/Add";
 import { changeStep } from "../../store/actions/actions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { STEP2 } from "../../constants/steps";
+import { STEP2 } from "../../constants/index";
 
 const CustomerForm = ({ addHandler }) => {
   const customers = useSelector((state) => state.customerReducer);
@@ -36,15 +36,9 @@ const CustomerForm = ({ addHandler }) => {
           <RadioGroup>
             {customers.map((curr) => {
               return (
-                <Customer
+                <Customer 
                   key={curr.id}
-                  id={curr.id}
-                  name={curr.name}
-                  address={curr.address}
-                  paymentMethod={curr.paymentMethod}
-                  cardNumber={curr.cardNumber}
-                  cardExpire={curr.cardExpire}
-                  cardCVV={curr.cardCVV}
+                  {...curr}
                 />
               );
             })}
@@ -59,16 +53,16 @@ const CustomerForm = ({ addHandler }) => {
         <DialogAdd />
       </Box>
 
-      <Box sx={{ my: "5px", display: "flex", justifyContent: "space-between" }}>
+      <Grid container sx={{ my: "5px",  justifyContent: "space-between" }}>
         <Button disabled>
           <ArrowBackIcon />
           Return to shop
         </Button>
 
-        <Button variant="contained" onClick={() => toPayment()}>
+        <Button variant="contained" onClick={toPayment}>
           Continue to payment
         </Button>
-      </Box>
+      </Grid>
     </Box>
   );
 };

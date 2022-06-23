@@ -5,6 +5,7 @@ import {
   DialogContentText,
   DialogTitle,
   FormControl,
+  Grid,
   InputLabel,
   MenuItem,
   Select,
@@ -45,8 +46,9 @@ const DialogAdd = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
-      save();
-      actions.resetForm()
+      dispatch(addCustomer({ id: Math.random(), ...values }));
+      setDialogIsOpen(false);
+      actions.resetForm();
     },
   });
 
@@ -56,43 +58,9 @@ const DialogAdd = () => {
     dispatch(changeDialogState(newState));
   };
 
-  const save = () => {
-    dispatch(
-      addCustomer(
-        Math.random(),
-        formik.values.name,
-        formik.values.address,
-        formik.values.paymentMethod,
-        formik.values.cardNumber,
-        formik.values.cardExpire,
-        formik.values.cardCVV
-      )
-    );
-    setDialogIsOpen(false);
-  };
-
   const cancel = () => {
-    clear();
     setDialogIsOpen(false);
-  };
-
-  const clear = () => {
-    formik.values.name = "";
-    formik.values.address = "";
-    formik.values.paymentMethod = "paypal";
-    formik.values.cardNumber = "";
-    formik.values.cardExpire = "";
-    formik.values.cardCVV = "";
-  };
-
-  //for debugging
-  const test = () => {
-    formik.values.name = "Mishel";
-    formik.values.address = "New York";
-    formik.values.paymentMethod = "paypal";
-    formik.values.cardNumber = "5468422214578540";
-    formik.values.cardExpire = "07/23";
-    formik.values.cardCVV = "701";
+    formik.resetForm();
   };
 
   return (
@@ -145,6 +113,7 @@ const DialogAdd = () => {
             <Select
               label="Payment method"
               labelId="paymentLabel"
+              name="paymentMethod"
               value={formik.values.paymentMethod}
               onChange={formik.handleChange}
               sx={{
@@ -216,16 +185,15 @@ const DialogAdd = () => {
             m: "5px",
           }}
         >
-          <Box
+          <Grid
+            container
             sx={{
               justifyContent: "flex-end",
-              display: "flex",
             }}
           >
-            <Button onClick={() => test()}>Test</Button>
-            <Button onClick={() => cancel()}>Cancel</Button>
+            <Button onClick={cancel}>Cancel</Button>
             <Button type="submit">Save</Button>
-          </Box>
+          </Grid>
         </Box>
       </form>
     </Dialog>

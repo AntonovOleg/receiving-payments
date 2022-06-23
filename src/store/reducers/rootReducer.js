@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   customerReducer,
   stepperReducer,
   payMethodReducer,
-  dialogReducer
+  dialogReducer,
 });
 
 export default rootReducer;

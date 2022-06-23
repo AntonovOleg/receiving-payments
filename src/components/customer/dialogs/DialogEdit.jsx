@@ -6,6 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
   FormControl,
+  Grid,
   MenuItem,
   Select,
   TextField,
@@ -55,28 +56,12 @@ const DialogEdit = ({
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      save(values);
+      dispatch(editCustomer({id, ...values}));
+      setIsEditDialog(false);
     },
   });
 
   const cancel = () => {
-    setIsEditDialog(false);
-  };
-
-  const save = (values) => {
-    console.log(values)
-    values.id = id
-    dispatch(
-      editCustomer(
-        id,
-        formik.values.name,
-        formik.values.address,
-        formik.values.paymentMethod,
-        formik.values.cardNumber,
-        formik.values.cardExpire,
-        formik.values.cardCVV
-      )
-    );
     setIsEditDialog(false);
   };
 
@@ -129,6 +114,7 @@ const DialogEdit = ({
             <Select
               label="Payment method"
               labelId="paymentLabel"
+              name="paymentMethod"
               value={formik.values.paymentMethod}
               onChange={formik.handleChange}
               sx={{
@@ -199,15 +185,15 @@ const DialogEdit = ({
             m: "5px",
           }}
         >
-          <Box
+          <Grid
+            container
             sx={{
               justifyContent: "flex-end",
-              display: "flex",
             }}
           >
-            <Button onClick={() => cancel()}>Cancel</Button>
+            <Button onClick={cancel}>Cancel</Button>
             <Button type="submit">Save</Button>
-          </Box>
+          </Grid>
         </Box>
       </form>
     </Dialog>
