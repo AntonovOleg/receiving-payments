@@ -1,16 +1,14 @@
 import { Button, Fab, Grid, RadioGroup, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Customer from "./Customer";
 import DialogAdd from "./dialogs/DialogAdd";
 import AddIcon from "@mui/icons-material/Add";
 import { changeStep } from "../../store/actions/actions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { STEP2 } from "../../constants/steps";
+import { STEP2 } from "../../constants/index";
 
-const CustomerForm = () => {
-  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+const CustomerForm = ({ addHandler }) => {
   const customers = useSelector((state) => state.customerReducer);
   const dispatch = useDispatch();
 
@@ -22,59 +20,49 @@ const CustomerForm = () => {
     <Box
       sx={{
         mr: "3px",
+        mt: '30px'
       }}
     >
       <Box>
-        <Typography variant='h5'>Customer Account</Typography>
-        <Grid container>
-          <Box sx={{
-            display: 'flex',
-          }}>
+        <Typography variant="h5">Customer Account</Typography>
+        <Box className='btn-add-sec'>
+          <Fab onClick={addHandler} color="primary">
+            <AddIcon />
+          </Fab>
+        </Box>
+        <Grid container direction="column" sx={{
+          minHeight: '200px'
+        }}>
           <RadioGroup>
             {customers.map((curr) => {
               return (
-                
-                  <Customer
-                    key={curr.id}
-                    id={curr.id}
-                    name={curr.name}
-                    address={curr.address}
-                    paymentMethod={curr.paymentMethod}
-                    cardNumber={curr.cardNumber}
-                    cardExpire={curr.cardExpire}
-                    cardCVV={curr.cardCVV}
-                  />
-                 
+                <Customer 
+                  key={curr.id}
+                  {...curr}
+                />
               );
             })}
-            {customers && customers.length > 0 ? null : (
+            {customers && customers.length === 0 && (
               <Typography sx={{ color: "gray" }}>
                 <i>No customers. Add a new customer account</i>
               </Typography>
             )}
           </RadioGroup>
-          </Box>
-
         </Grid>
-        <Fab onClick={() => setDialogIsOpen(true)} color="primary">
-          <AddIcon />
-        </Fab>
 
-        <DialogAdd
-          dialogIsOpen={dialogIsOpen}
-          setDialogIsOpen={setDialogIsOpen}
-        />
+        <DialogAdd />
       </Box>
 
-      <Box sx={{ my: "5px" }}>
+      <Grid container sx={{ my: "5px",  justifyContent: "space-between" }}>
         <Button disabled>
           <ArrowBackIcon />
           Return to shop
         </Button>
-        <Button variant="contained" onClick={() => toPayment()}>
+
+        <Button variant="contained" onClick={toPayment}>
           Continue to payment
         </Button>
-      </Box>
+      </Grid>
     </Box>
   );
 };

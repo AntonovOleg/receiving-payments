@@ -1,15 +1,15 @@
-import { Badge, Card, Divider, Typography } from "@mui/material";
+import { ConstructionOutlined } from "@mui/icons-material";
+import { Badge, Card, Divider, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import {
   MODE_BALANCE,
   MODE_PAYPAL,
   MODE_VISA,
-} from "../../constants/payMethods";
+} from "../../constants";
 
 const BasketForm = () => {
-  const currentPayMethod = useSelector((state) => state.payMethodReducer) * 1;
-
+  const currentPayMethod = Number(useSelector((state) => state.payMethodReducer));
   const subtotal = 400;
   const pps = (subtotal / 100) * 1;
   const vat = (subtotal / 100) * 21;
@@ -34,18 +34,42 @@ const BasketForm = () => {
         mt: "10px",
         p: "10px",
         backgroundColor: "#eeeef4",
-        width: "260px",
+        width: "300px",
       }}
     >
-      <Badge
-        badgeContent={2}
-        color="primary"
+      <Grid
+        container
         sx={{
-          p: "5px",
+          justifyContent: "space-between",
         }}
       >
-        <Typography>Shopping Cart</Typography>
-      </Badge>
+        <Grid
+          item
+          sx={{
+            m: "5px",
+          }}
+        >
+          <Typography variant="h5">Shopping Cart</Typography>
+        </Grid>
+
+        <Grid
+          item
+          sx={{
+            mr: "30px",
+            mt: "15px",
+          }}
+        >
+          <Badge
+            badgeContent={2}
+            color="primary"
+            sx={{
+              p: "5px",
+            }}
+          >
+            <Box />
+          </Badge>
+        </Grid>
+      </Grid>
 
       <Divider />
 
@@ -53,13 +77,11 @@ const BasketForm = () => {
         <Card
           sx={{
             m: "10px",
+            display: "flex",
+            justifyContent: "space-around",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
+          <Grid container>
             <Box
               sx={{
                 mt: "10px",
@@ -69,22 +91,22 @@ const BasketForm = () => {
             </Box>
             <Box>
               <Typography>Glitch</Typography>
-              <Typography>Cristian Lamborgini</Typography>
-              <Typography>$200.00</Typography>
+              <Typography sx={{ color: "gray" }}>
+                Cristian Lamborgini
+              </Typography>
+              <Typography sx={{ color: "gray" }}>$200.00</Typography>
             </Box>
-          </Box>
+          </Grid>
         </Card>
 
         <Card
           sx={{
             m: "10px",
+            display: "flex",
+            justifyContent: "space-around",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
+          <Grid>
             <Box
               sx={{
                 mt: "10px",
@@ -94,10 +116,12 @@ const BasketForm = () => {
             </Box>
             <Box>
               <Typography>Bianca</Typography>
-              <Typography>Cristian Lamborgini</Typography>
-              <Typography>$200.00</Typography>
+              <Typography sx={{ color: "gray" }}>
+                Cristian Lamborgini
+              </Typography>
+              <Typography sx={{ color: "gray" }}>$200.00</Typography>
             </Box>
-          </Box>
+          </Grid>
         </Card>
       </Box>
 
@@ -105,29 +129,29 @@ const BasketForm = () => {
 
       {/* SUBTOTAL */}
       <Box sx={{ p: "2px" }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Grid container sx={{ justifyContent: "space-between" }}>
           <Typography>Subtotal:</Typography>
-          <Typography>{subtotal}</Typography>
-        </Box>
+          <Typography>{subtotal.toFixed(2)}</Typography>
+        </Grid>
       </Box>
 
       {/* Payment processing services 1% */}
       {currentPayMethod !== MODE_BALANCE && (
         <Box sx={{ p: "2px" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Grid container sx={{ justifyContent: "space-between" }}>
             <Typography>Payment processing services 1%:</Typography>
-            <Typography>{pps}</Typography>
-          </Box>
+            <Typography>{pps.toFixed(2)}</Typography>
+          </Grid>
         </Box>
       )}
 
       {/* VAT */}
       {currentPayMethod === MODE_PAYPAL && (
         <Box sx={{ p: "2px" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Grid container sx={{ justifyContent: "space-between" }}>
             <Typography>VAT 21%:</Typography>
-            <Typography>{vat}</Typography>
-          </Box>
+            <Typography>{vat.toFixed(2)}</Typography>
+          </Grid>
         </Box>
       )}
 
@@ -135,10 +159,10 @@ const BasketForm = () => {
 
       {/* TOTAL */}
       <Box sx={{ p: "2px" }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Grid container sx={{ justifyContent: "space-between" }}>
           <Typography>Total:</Typography>
-          <Typography>{total}</Typography>
-        </Box>
+          <Typography>{total.toFixed(2)}</Typography>
+        </Grid>
       </Box>
     </Box>
   );

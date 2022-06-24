@@ -1,8 +1,6 @@
-import { STEP1 } from "../../constants/steps";
+import { STEP1 } from "../../constants/index";
 
-const defaultState = STEP1;
-
-export const stepperReducer = (state = defaultState, action) => {
+export const stepperReducer = (state = STEP1, action) => {
   switch (action.type) {
     case "changeStep":
       return action.payload.step;

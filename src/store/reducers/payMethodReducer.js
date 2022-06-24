@@ -1,8 +1,6 @@
-import { MODE_PAYPAL } from "../../constants/payMethods";
+import { MODE_PAYPAL } from "../../constants/index";
 
-const defaultState = MODE_PAYPAL;
-
-export const payMethodReducer = (state = defaultState, action) => {
+export const payMethodReducer = (state = MODE_PAYPAL, action) => {
   switch (action.type) {
     case "changeCurrentPayMethod":
       return action.payload.payMethod;

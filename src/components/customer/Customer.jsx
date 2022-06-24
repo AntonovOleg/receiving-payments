@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardContent,
   Grid,
@@ -56,11 +55,7 @@ const Customer = ({
         }}
       >
         <CardContent>
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
+          <Grid container>
             <Box
               sx={{
                 mt: "50px",
@@ -70,9 +65,9 @@ const Customer = ({
             </Box>
 
             <Box>
-              <Box
+              <Grid
+                container
                 sx={{
-                  display: "flex",
                   justifyContent: "center",
                 }}
               >
@@ -94,7 +89,7 @@ const Customer = ({
                     {address}
                   </Typography>
                 </Box>
-              </Box>
+              </Grid>
 
               <Typography>Acc. No.: 32134649846</Typography>
               <Typography>Issuring bank: {paymentMethod}</Typography>
@@ -111,7 +106,7 @@ const Customer = ({
               onClose={() => setMenu(false)}
               anchorEl={anchor}
             >
-              <MenuItem onClick={() => editHandler()}>
+              <MenuItem onClick={editHandler}>
                 <CheckIcon />
                 Edit
               </MenuItem>
@@ -120,7 +115,7 @@ const Customer = ({
                 Delete
               </MenuItem>
             </Menu>
-          </Box>
+          </Grid>
         </CardContent>
         <DialogEdit
           isEditDialog={isEditDialog}

@@ -1,45 +1,17 @@
-export const addCustomer = (
-  id,
-  name,
-  address,
-  paymentMethod,
-  cardNumber,
-  cardExpire,
-  cardCVV
-) => {
+export const addCustomer = (customer) => {
   return {
     type: "AddCustomer",
     payload: {
-      id,
-      name,
-      address,
-      paymentMethod,
-      cardNumber,
-      cardExpire,
-      cardCVV,
+      ...customer,
     },
   };
 };
 
-export const editCustomer = (
-  id,
-  name,
-  address,
-  paymentMethod,
-  cardNumber,
-  cardExpire,
-  cardCVV
-) => {
+export const editCustomer = (customer) => {
   return {
     type: "EditCustomer",
     payload: {
-      id,
-      name,
-      address,
-      paymentMethod,
-      cardNumber,
-      cardExpire,
-      cardCVV,
+      ...customer,
     },
   };
 };
@@ -67,6 +39,15 @@ export const changeCurrentPayMethod = (newMethod) => {
     type: "changeCurrentPayMethod",
     payload: {
       payMethod: newMethod,
+    },
+  };
+};
+
+export const changeDialogState = (newValue) => {
+  return {
+    type: "ChangeDialogState",
+    payload: {
+      newState: newValue,
     },
   };
 };

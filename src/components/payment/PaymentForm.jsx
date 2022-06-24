@@ -1,17 +1,20 @@
-import { Box, Button, Radio, RadioGroup, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  MODE_BALANCE,
-  MODE_PAYPAL,
-  MODE_VISA,
-} from "../../constants/payMethods";
+import { MODE_BALANCE, MODE_PAYPAL, MODE_VISA } from "../../constants";
 import {
   changeCurrentPayMethod,
   changeStep,
 } from "../../store/actions/actions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { STEP1 } from "../../constants/steps";
+import { STEP1 } from "../../constants/index";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
@@ -31,16 +34,23 @@ const PaymentForm = () => {
   };
 
   return (
-    <Box>
-      <Typography>Payment selection</Typography>
+    <Box
+      sx={{
+        mt: "30px",
+      }}
+    >
+      <Typography variant="h5">Payment selection</Typography>
 
       <Box
         sx={{
           textAlign: "left",
+          minHeight: "255px",
         }}
       >
         <RadioGroup
-          onChange={(e) => radioHandler(e.target.value)}
+          onChange={(e) => {
+            radioHandler(e.target.value);
+          }}
           value={radio}
         >
           <Box
@@ -75,19 +85,15 @@ const PaymentForm = () => {
         </RadioGroup>
       </Box>
 
-      <Box
-        sx={{
-          m: "5px",
-        }}
-      >
-        <Button onClick={() => toCustomer()}>
+      <Grid container sx={{ my: "5px", justifyContent: "space-between" }}>
+        <Button onClick={toCustomer}>
           <ArrowBackIcon />
           Return to customer select
         </Button>
-        <Button variant="outlined" disabled>
+        <Button variant="outlined" disabled sx={{ mr: "3px" }}>
           Complete order
         </Button>
-      </Box>
+      </Grid>
     </Box>
   );
 };
